@@ -37,6 +37,7 @@ public class PaymeUzTransaction {
     @Column(name = "state", nullable = false)
     private Integer state;
 
+    @Column(name = "orders")
     private String order;
 
     @Column(name = "amount", nullable = false)

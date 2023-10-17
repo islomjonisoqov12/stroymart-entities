@@ -1,0 +1,77 @@
+
+entity CompanyInfo {
+	location String required
+    email String maxlength(512) required
+    aboutUs String required 
+    fields Map
+}
+
+entity Attachment {
+	extension String required
+    path String required
+    size Long
+    originalName String required
+}
+
+entity Gallery {
+	name String 
+}
+
+entity New {
+	title String required
+    viewCount Integer
+    description String required
+}
+
+entity Service {
+	name String 
+    description String
+}
+
+entity History {
+	date String required
+    details String required
+}
+
+entity Request {
+	name String required
+    contact String required
+    email String required maxlength(512)
+    details String required
+}
+
+entity FAQ {
+	question String required
+    answer String required
+}
+
+entity Projects {
+	title String
+    description String
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToOne {
+	Gallery{attachment} to Attachment
+	Service{attachment} to Attachment
+}
+
+relationship OneToMany {
+	Project{attachments} to Attachment
+}
+
+
+
+
+// Set pagination options
+paginate New, Project, Request, Gallery with infinite-scroll
+paginate New, Project, Request, Gallery with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
